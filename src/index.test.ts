@@ -1,10 +1,9 @@
 import { test } from 'uvu'
 import * as assert from 'uvu/assert'
-import { fetch } from 'undici'
+//import { fetch } from 'undici'
 import { findAddress } from './index'
 
-// @ts-ignore
-globalThis.fetch = fetch
+// globalThis.fetch = fetch
 
 test('find address', async () => {
   const addr = await findAddress('tom')

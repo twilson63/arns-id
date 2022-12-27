@@ -4,7 +4,8 @@
 <head>
   <title>ArNS ID Demo</title>
   <script type="module">
-    import { findAddress } from './bundle.js'
+    import { findAddress } from '../bundle.min.js'
+
 
     const form = document.getElementById('find')
     form.addEventListener('submit', (e) => {
@@ -12,11 +13,18 @@
       const criteria = document.getElementById('subdomain').value
       console.log('criteria', criteria)
       findAddress(criteria).then(addr => {
+        // gql Account-0.2 and Account-0.3
+        // and owner = address
+
         document.getElementById('wallet').innerHTML = `
         <h3>Wallet Address for ${criteria} is:</h3>
         <p>${addr}</p>
         `
         document.getElementById('subdomain').value = ''
+      }).catch(error => {
+        document.getElementById('wallet').innerHTML = `
+        <h3>Wallet Address for ${criteria} is:</h3>
+        <p>not found</p>
       })
 
     })
@@ -38,6 +46,8 @@
     </div>
   </form>
   <div id="wallet"></div>
+  <hr />
+  <div>Developer Documentation <a href="../index.html">here</a></div>
 </body>
 
 </html>

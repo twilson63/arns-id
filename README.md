@@ -2,6 +2,8 @@
 
 Quickly match sub-domain names to wallet addresses. This library takes a sub-domain name and uses the ArNS Test Contract to locate the ANT contract, then it reads the state of the ANT contract to locate the owner address of the contract.
 
+> NOTE: For NodeJS Usage, this package requires Node version 18+
+
 ## Install
 
 ```console
