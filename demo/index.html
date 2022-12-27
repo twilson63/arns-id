@@ -3,20 +3,41 @@
 
 <head>
   <title>ArNS ID Demo</title>
+  <script type="module">
+    import { findAddress } from './bundle.js'
+
+    const form = document.getElementById('find')
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const criteria = document.getElementById('subdomain').value
+      console.log('criteria', criteria)
+      findAddress(criteria).then(addr => {
+        document.getElementById('wallet').innerHTML = `
+        <h3>Wallet Address for ${criteria} is:</h3>
+        <p>${addr}</p>
+        `
+        document.getElementById('subdomain').value = ''
+      })
+
+    })
+
+  </script>
+
 </head>
 
 <body>
   <h1>ArNS ID Demo</h1>
   <p>Enter a sub-domain and find a wallet address</p>
-  <form>
+  <form id="find">
     <div>
-      <label>SubDomain</label>
-      <input type="text" />
+      <label for="subdomain">SubDomain</label>
+      <input type="text" id="subdomain" />
     </div>
     <div>
       <button>Submit</button>
     </div>
   </form>
+  <div id="wallet"></div>
 </body>
 
 </html>

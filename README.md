@@ -16,3 +16,25 @@ import { findAddress } from 'arns-id'
 const addr = await findAddress('rakis')
 ```
 
+## Testing
+
+```sh
+yarn test
+```
+
+## Linting
+
+```sh
+yarn lint
+```
+
+## Publish
+
+```sh
+yarn deploy
+```
+
+## Contributing
+
+Performance Optimizations and Bug fixes are welcome!
+

@@ -2,7 +2,8 @@ const CACHE_SERVER = 'https://cache.permapages.app'
 const ARNS_CONTRACT = 'bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U'
 
 export const findAddress = (subdomain: string) => {
-  return findANT(subdomain).then(findAddressFromAnt)
+  return findANT(subdomain)
+    .then(findAddressFromAnt)
 }
 
 function findAddressFromAnt(ant: string) {
@@ -16,7 +17,8 @@ function findAddressFromAnt(ant: string) {
     } else {
       throw new Error('Not Found!')
     }
-  }).then(prop('result'))
+  })
+    .then(prop('result'))
 }
 
 function findANT(s: string) {
@@ -26,7 +28,7 @@ function findANT(s: string) {
     body: JSON.stringify(["compose",
       ["nth", "1"],
       ["find", ["compose",
-        ["equals", "tom"],
+        ["equals", s],
         ["nth", "0"]
       ]],
       ["toPairs"],
@@ -38,12 +40,13 @@ function findANT(s: string) {
     } else {
       throw new Error('Not Found!')
     }
-  }).then(prop('result'))
+  })
+    .then(prop('result'))
 }
 
 
 function prop(k: string) {
-  return function (o: Record<string, any>) {
+  return function (o: Record<string, unknown>) {
     return o[k]
   }
 }
